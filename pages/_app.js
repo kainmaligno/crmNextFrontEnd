@@ -1,6 +1,6 @@
 import '../styles/main.css';
-import Layout from '../components/Layout'
-import client from '../config/apollo'
+import Layout from '../components/Layout';
+import client from '../config/apollo';
 import { ApolloProvider } from '@apollo/client';
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -9,5 +9,5 @@ export default function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
     </ApolloProvider>
-  ); 
+  );
 }
