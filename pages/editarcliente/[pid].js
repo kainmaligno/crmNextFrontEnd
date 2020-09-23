@@ -52,20 +52,18 @@ const EditarCliente = () => {
       const clientesActualizados = obtenerClientesVendedor.map(cliente =>
         cliente.id === id ? actualizarCliente : cliente
       );
-
-      cache.writeQuery({
-        query: OBTENER_CLIENTES_USUARIO,
-        data: {
-          obtenerClientesVendedor: clientesActualizados,
-        },
-      });
-
       // Actulizar Cliente Actual
       cache.writeQuery({
         query: OBTENER_CLIENTE,
         variables: { id },
         data: {
           obtenerCliente: actualizarCliente,
+        },
+      });
+      cache.writeQuery({
+        query: OBTENER_CLIENTES_USUARIO,
+        data: {
+          obtenerClientesVendedor: clientesActualizados,
         },
       });
     },
@@ -107,6 +105,7 @@ const EditarCliente = () => {
         `El Cliente ${data.actualizarCliente.nombre} ${data.actualizarCliente.apellido} se actualizó correctamente`,
         'success'
       );
+
       router.push('/');
     } catch (error) {
       Swal.fire({
