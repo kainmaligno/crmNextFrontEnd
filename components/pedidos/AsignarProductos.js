@@ -16,10 +16,16 @@ const AsignarProductos = () => {
   const { data, loading } = useQuery(OBTENER_PRODUCTOS);
   const [productos, setProductos] = useState([]);
   const pedidoContext = useContext(PedidoContext);
-  const { agregarProducto } = pedidoContext;
+  const { agregarProducto, actualizarTotal } = pedidoContext;
   useEffect(() => {
-    console.log(productos);
-    agregarProducto(productos);
+    if (productos == null) {
+      setProductos([]);
+      actualizarTotal();
+    } else {
+      agregarProducto(productos);
+      actualizarTotal();
+    }
+    //agregarProducto(productos);
   }, [productos]);
   const seleccionarProducto = producto => {
     setProductos(producto);
